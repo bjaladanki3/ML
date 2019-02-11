@@ -113,7 +113,7 @@ iterationLC(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,{'SVM__n_iter':np.
 
 
 
-RBF SVM
+#RBF SVM
 gamma_fracsA = np.arange(0.2,2.1,0.2)
 
 pipeA = Pipeline([('Scale',StandardScaler()),

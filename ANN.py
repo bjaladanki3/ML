@@ -51,40 +51,40 @@ iterationLC(pipeA,adult_trgX,adult_trgY,adult_tstX,adult_tstY,{'MLP__max_iter':[
 
 
 # SPAM
-# spam = pd.read_hdf('spam.hdf','spam')
-# spamX = spam.drop('clas',1).copy().values
-# spamY = spam['clas'].copy().values
-#
-# spam_trgX, spam_tstX, spam_trgY, spam_tstY = ms.train_test_split(spamX, spamY, test_size=0.3, random_state=0,stratify=spamY)
-#
-# pipeB = Pipeline([('Scale',StandardScaler()),
-#                  ('MLP',MLPClassifier(max_iter=2000,early_stopping=True,random_state=55))])
-#
-# d = spamX.shape[1]
-# hiddens_spam = [(h,)*l for l in [1,2,3] for h in [d,d//2,d*2]]
-# alphas = [10**-x for x in np.arange(-1,5.01,1/2)]
-#
-# params_spam = {'MLP__activation':['relu','logistic'],'MLP__alpha':alphas,'MLP__hidden_layer_sizes':hiddens_spam}
-#
-#
-#
-#
-# spam_clf = basicResults(pipeB,spam_trgX,spam_trgY,spam_tstX,spam_tstY,params_spam,'ANN','spam')
-# spam_final_params =spam_clf.best_params_
-# spam_OF_params =spam_final_params.copy()
-# spam_OF_params['MLP__alpha'] = 0
-#
-# pipeB.set_params(**spam_final_params)
-# pipeB.set_params(**{'MLP__early_stopping':False})
-# makeTimingCurve(spamX,spamY,pipeB,'ANN','spam')
-#
-# pipeB.set_params(**spam_final_params)
-# pipeB.set_params(**{'MLP__early_stopping':False})
-# iterationLC(pipeB,spam_trgX,spam_trgY,spam_tstX,spam_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN','spam')
-#
-# pipeB.set_params(**spam_OF_params)
-# pipeB.set_params(**{'MLP__early_stopping':False})
-# iterationLC(pipeB,spam_trgX,spam_trgY,spam_tstX,spam_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN_OF','spam')
+ spam = pd.read_hdf('spam.hdf','spam')
+ spamX = spam.drop('clas',1).copy().values
+ spamY = spam['clas'].copy().values
+
+ spam_trgX, spam_tstX, spam_trgY, spam_tstY = ms.train_test_split(spamX, spamY, test_size=0.3, random_state=0,stratify=spamY)
+
+ pipeB = Pipeline([('Scale',StandardScaler()),
+                  ('MLP',MLPClassifier(max_iter=2000,early_stopping=True,random_state=55))])
+
+ d = spamX.shape[1]
+ hiddens_spam = [(h,)*l for l in [1,2,3] for h in [d,d//2,d*2]]
+ alphas = [10**-x for x in np.arange(-1,5.01,1/2)]
+
+ params_spam = {'MLP__activation':['relu','logistic'],'MLP__alpha':alphas,'MLP__hidden_layer_sizes':hiddens_spam}
+
+
+
+
+ spam_clf = basicResults(pipeB,spam_trgX,spam_trgY,spam_tstX,spam_tstY,params_spam,'ANN','spam')
+ spam_final_params =spam_clf.best_params_
+ spam_OF_params =spam_final_params.copy()
+ spam_OF_params['MLP__alpha'] = 0
+
+ pipeB.set_params(**spam_final_params)
+ pipeB.set_params(**{'MLP__early_stopping':False})
+ makeTimingCurve(spamX,spamY,pipeB,'ANN','spam')
+
+ pipeB.set_params(**spam_final_params)
+ pipeB.set_params(**{'MLP__early_stopping':False})
+ iterationLC(pipeB,spam_trgX,spam_trgY,spam_tstX,spam_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN','spam')
+
+ pipeB.set_params(**spam_OF_params)
+ pipeB.set_params(**{'MLP__early_stopping':False})
+ iterationLC(pipeB,spam_trgX,spam_trgY,spam_tstX,spam_tstY,{'MLP__max_iter':[2**x for x in range(12)]+[2100,2200,2300,2400,2500,2600,2700,2800,2900,3000]},'ANN_OF','spam')
 #
 #
 # #

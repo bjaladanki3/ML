@@ -7,6 +7,7 @@ To run the code:
 
 Go to the following Github link, and clone the repository.
 
+https://github.com/bjaladanki3/ML-CS7641.git
 
 All the necessary code is within the labeled python files. 
 The data is in the spambase.data and adult.data files.
